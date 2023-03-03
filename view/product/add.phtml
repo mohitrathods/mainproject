@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="skin/css/add.css?<?php echo time(); ?>" />
+    <title>Insert Data</title>
+</head> 
+<body>
+    <form action="Product.php?page=insert" method="post">
+        <div class="mainadd">
+            <div class="eachdiv">
+                <label>NAME</label>
+                <input type="text" name="name" placeholder="enter your name" />
+            </div>
+                
+            <div class="eachdiv">  
+                <label>SKU</label>
+                <input type="number" name="sku" placeholder="enter sku" />
+            </div>  
+
+            <div class="eachdiv">
+                <label>COST</label>
+                <input type="number" name="cost" placeholder="enter cost" />
+            </div>
+                
+            <div class="eachdiv">
+                <label>PRICE</label>
+                <input type="number" name="price" placeholder="enter price" />
+            </div>
+                
+            <div class="eachdiv">
+                <label>QUANTITY</label>
+                <input type="number" name="quantity" placeholder="enter quantity" />
+            </div>
+
+            <div class="eachdiv">
+                <label>DESCRIPTION</label>
+                <textarea name="description" id="" cols="6" rows="4" placeholder="enter description"></textarea>
+            </div>
+                
+            <div class="eachdiv">
+                <label>COLOR</label>
+                <select name="color">
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                </select>
+            </div>
+
+            <div class="eachdiv">
+                <label>STATUS</label>
+                <select name="status">
+                    <option value="active">active</option>
+                    <option value="inactive">inactive</option>
+                </select>
+            </div>
+
+            <div class="eachdiv">
+                <label>MATERIAL</label>
+                <select name="material">
+                    <option value="glass">Glass</option>
+                    <option value="metal">Metal</option>
+                    <option value="plastic">Plastic</option>
+                </select>
+            </div>
+
+            <div class="eachdiv">
+                <input type="submit" class="submitbutton" />
+                <a href="http://localhost/phpproject/product.php?page=grid">CANCEL</a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

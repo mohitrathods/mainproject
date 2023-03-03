@@ -1,0 +1,3 @@
+- use if condition in edit 
+
+- understand product media after completion
