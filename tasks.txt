@@ -1,3 +1,23 @@
 - use if condition in edit 
 
-- understand product media after completion
+- understand product media and adapter 
+
+> 6 feb training
+- controller and action na name hase e changes 
+- Request.php page made
+- proceed code in photos line by line
+> third phota ma 
+> if email is not key return null > this edit in request.php 
+> arraykeyexist method to see array key avialabltiy > 4TH PHOTO SEE IT niche post chhe tya get kri devanu
+and get param in last function all the changes
+> perform 5th photo and 6th
+
+NEW 
+make index.php > see screenshot from 7 
+- static method ma direct class call thay
+- regular method ma object bani ne class access thay 
+- block scope ni bar this no use krvo object banavi ne j krvu 
+
+
+product conrtoller inside controller thing 
+grid action 

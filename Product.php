@@ -43,7 +43,6 @@ class Product {
         $status = $_POST['status'];
         $material = $_POST['material'];
         
-        //date time updated at
         date_default_timezone_set('Asia/Kolkata');
         $date = date('m/d/Y h:i:s a', time());
         $datetime = date("y-m-d h:i:sA");

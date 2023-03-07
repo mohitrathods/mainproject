@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="skin/css/edit.css?<?php echo time(); ?>">
+    <title>Edit category</title>
+</head>
+<body>
+<form action="Category.php?page=update&id=<?php echo $result['category_id'] ?>" method="post">
+    <div class="mainadd">
+        <div class="eachdiv">
+            <label>EDIT NAME</label>
+            <input type="text" name="name" value="<?php echo $result['name'] ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>EDIT OPTION</label>
+            <select name="status">
+                <option value="active" <?php if($result['status'] == 'active' ){echo "selected";} ?>>Active</option>
+                <option value="inactive" <?php if($result['status'] == 'inactive'){echo "selected";} ?>>Inactive</option>
+            </select>
+        </div>
+
+        <div class="eachdiv">
+            <label>EDIT DESCRIPTION</label>
+            <input type="text" name="description" value="<?php echo $result['description'] ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <input type="submit" class="submitbutton" />
+            <a href="Category.php?page=grid">CANCEL</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="skin/css/edit.css?<?php echo time(); ?>">
+    <title>Edit data</title>
+</head>
+<body>
+<form method="post" action="Vendor.php?page=update&id=<?php echo $result['vendor_id'] ?>">
+    <div class="mainadd">
+        <div class="eachdiv">
+            <label>FIRST NAME</label>
+            <input type="text"  name="firstname" value="<?php echo $result['first_name'] ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>LAST NAME</label>
+            <input type="text"  name="lastname" value="<?php echo $result['last_name'] ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label> EMAIL</label>
+            <input type="email"  name="email" value="<?php echo $result['email'] ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>GENDER</label>
+            <select name="gender">
+                <option value="male <?php if($result['gender'] == 'male') {echo 'selected';} ?>">Male</option>
+                <option value="female <?php if($result['gender'] == 'female'){echo 'selected';} ?>">Female</option>
+            </select>
+        </div>
+
+        <div class="eachdiv">
+            <label>MOBILE</label>
+            <input type="tel"  name="mobile" value="<?php echo $result['mobile'] ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>STATUS</label>
+            <select name="status">
+                <option value="active <?php if($result['status'] == 'active'){echo 'selected';} ?>">Active</option>
+                <option value="inactive <?php if($result['status'] == 'inactive'){echo 'selected';} ?>">Inactive</option>
+            </select>
+        </div>
+
+        <div class="eachdiv">
+            <label>COMPANY</label>
+            <input type="text"  name="company" value="<?php echo $result['company'] ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <input type="submit" class="submitbutton" />
+            <a href="Vendor.php?page=grid">CANCEL</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>
