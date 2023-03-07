@@ -17,7 +17,7 @@
             <!-- head -->
             <div class="headd">
                 <span>Category</span>
-                <a href="Category.php?page=add">Add Category</a>
+                <a href="Category.php?a=add">Add Category</a>
             </div>
         </div>  
         
@@ -38,8 +38,8 @@
                         <td><?php echo $category['name'] ?></td>
                         <td><?php echo $category['status'] ?></td>
                         <td><?php echo $category['description'] ?></td>
-                        <td><a href="Category.php?page=edit&id=<?php echo $category['category_id'] ?>">EDIT</a></td>
-                        <td><a href="Category.php?page=delete&id=<?php echo $category['category_id'] ?>">DELETE</a></td>
+                        <td><a href="Category.php?a=edit&id=<?php echo $category['category_id'] ?>">EDIT</a></td>
+                        <td><a href="Category.php?a=delete&id=<?php echo $category['category_id'] ?>">DELETE</a></td>
                     </tr>
                 <?php endforeach; ?>
             </table>

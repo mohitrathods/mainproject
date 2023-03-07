@@ -2,14 +2,14 @@
 require_once 'model/core/adapter.php';
 
 //link setup
-$link = $_GET['page'].'Fun';
+$link = $_GET['a'].'Action';
 $Salesman = new Salesman();
 $Salesman->$link();
 
 class Salesman{
 
     // fetch and show the data
-    public function gridFun(){
+    public function gridAction(){
 
         $adapter = new adapter();
         $query = "SELECT * FROM `salesman` WHERE 1";
@@ -19,11 +19,11 @@ class Salesman{
     }
 
     //insert data and show file add
-    public function addFun(){
+    public function addAction(){
         require_once 'view/salesman/add.phtml';
     }
 
-    public function insertFun(){
+    public function insertAction(){
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $email = $_POST['email'];
@@ -41,10 +41,10 @@ class Salesman{
         VALUES('$firstname','$lastname','$email','$gender','$mobile','$status','$company','$datetime')";
         $result = $adapter->insertData($query);
 
-        header('location:Salesman.php?page=grid');
+        header('location:Salesman.php?a=grid');
     }
 
-    public function editFun(){
+    public function editAction(){
         $link = $_GET['id'];
         $adapter = new adapter();
         $query = "SELECT * FROM `salesman` WHERE `salesman_id` = $link";
@@ -53,7 +53,7 @@ class Salesman{
         require_once 'view/salesman/edit.phtml';
     }
 
-    public function updateFun(){
+    public function updateAction(){
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $email = $_POST['email'];
@@ -72,17 +72,17 @@ class Salesman{
         $query = "UPDATE `salesman` SET `first_name`='$firstname',`last_name`='$lastname',`email`='$email',`gender`='$gender',`mobile`='$mobile',`status`='$status',`company`='$company',`updated_at`='$datetime'
         WHERE `salesman_id` = $link";
         $result = $adapter->updateFun($query);
-        header('location:Salesman.php?page=grid');
+        header('location:Salesman.php?a=grid');
     }
 
     //delete the data of salesman
-    public function deleteFun(){
+    public function deleteAction(){
         $link = $_GET['id'];
         $adapter = new adapter();
         $query = "DELETE FROM `salesman` WHERE `salesman_id` = $link";
         $result = $adapter->deleteFun($query);
 
-        header('location:Salesman.php?page=grid');    
+        header('location:Salesman.php?a=grid');    
     }
 }
 ?>

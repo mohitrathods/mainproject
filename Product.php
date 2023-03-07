@@ -2,22 +2,22 @@
 
 <?php
 require_once 'model/core/adapter.php';
+require_once 'model/core/Request.php';
 
 // echo "<pre>";
 
-$link = $_GET['page'].'Fetch'; //get page.fetch > pageFetch : concate > gridFetch > goto gridFetch > show file mentioned 
+$link = $_GET['a'].'Action'; //get page.fetch > pageFetch : concate > gridFetch > goto gridFetch > show file mentioned 
 $productclass = new Product(); //access to class
 $productclass->$link();   
 
 class Product {
   
     // fetch items in GRID
-    public function gridFetch(){
+    public function gridAction(){
         
         //query and access to adapter class
         $query = "SELECT * FROM `product` WHERE 1";
         $adaptervar = new adapter();
-
         $products = $adaptervar->fetchAll($query);
 
         require_once 'view/product/grid.phtml';
@@ -27,21 +27,26 @@ class Product {
 
 
     // add items
-    public function addFetch(){
+    public function addAction(){
         require_once 'view/product/add.phtml';
     }
 
-    public function insertFetch(){
+    public function insertAction(){
+
+        // //request 
+        $request = new Model_Core_Request(); //access
         //get user input
-        $name = $_POST['name'];
-        $sku = $_POST['sku'];
-        $cost = $_POST['cost'];
-        $price = $_POST['price'];
-        $quantity = $_POST['quantity'];
-        $description = $_POST['description'];
-        $color = $_POST['color'];
-        $status = $_POST['status'];
-        $material = $_POST['material'];
+        $result = $request->getPost('product'); //call
+        print_r($result);
+        $name = $result['name'];
+        $sku = $result['sku'];
+        $cost = $result['cost'];
+        $price = $result['price'];
+        $quantity = $result['quantity'];
+        $description = $result['description'];
+        $color = $result['color'];
+        $status = $result['status'];
+        $material = $result['material'];
         
         date_default_timezone_set('Asia/Kolkata');
         $date = date('m/d/Y h:i:s a', time());
@@ -58,11 +63,11 @@ class Product {
         //result
         $result = $adaptervar->insertData($query);
 
-        header('location:http://localhost/phpproject/product.php?page=grid');
+        header('location:http://localhost/phpproject/product.php?a=grid');
     }
 
     //DELET FUNCTION
-    public function deleteFetch(){
+    public function deleteAction(){
         //get id
         $link = $_GET['id'];
 
@@ -74,10 +79,10 @@ class Product {
 
         //result
         $result = $adaptervar->deleteFun($query);
-        header('location:http://localhost/phpproject/product.php?page=grid');
+        header('location:http://localhost/phpproject/product.php?a=grid');
     }
 
-    public function editFetch(){
+    public function editAction(){
 
         $adaptervar = new adapter();
         $link = $_GET['id'];
@@ -88,22 +93,31 @@ class Product {
         require_once 'view/product/edit.phtml';
            
     }   
-    public function updateFetch(){
+    public function updateAction(){
 
         $adaptervar = new adapter();
-        //get id here
-        $link = $_GET['id'];
+        // $link = $_GET['id'];
+        
+        
+        //request class GET
+        $request = new Model_Core_Request();
+        $link = $request->getParam('id');
+        print_r($link);
+
+
+        //request class POST
+        $result = $request->getPost('product');
 
         //get values
-        $name = $_POST['name'];
-        $sku = $_POST['sku'];
-        $cost = $_POST['cost'];
-        $price = $_POST['price'];
-        $quantity = $_POST['quantity'];
-        $description = $_POST['description'];
-        $color = $_POST['color'];
-        $status = $_POST['status'];
-        $material = $_POST['material'];
+        $name = $result['name'];
+        $sku = $result['sku'];
+        $cost = $result['cost'];
+        $price = $result['price'];
+        $quantity = $result['quantity'];
+        $description = $result['description'];
+        $color = $result['color'];
+        $status = $result['status'];
+        $material = $result['material'];
 
         //date time updated at
         date_default_timezone_set('Asia/Kolkata');
@@ -118,7 +132,7 @@ class Product {
         // print_r($updatequery);    
         echo "<br>";
         // print_r($resultquery); // returns 1 as true
-        header('location:http://localhost/phpproject/product.php?page=grid');
+        header('location:http://localhost/phpproject/product.php?a=grid');
     }
     
 }

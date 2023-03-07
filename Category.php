@@ -3,7 +3,7 @@
 require_once 'model/core/adapter.php';
 
 //make link accessible
-$link = $_GET['page'].'Fun';
+$link = $_GET['a'].'Action';
 //pass the link in class below
 $Category = new Category();
 $Category->$link();
@@ -11,7 +11,7 @@ $Category->$link();
 class Category{
     
     //show grid page and fetch data
-    public function gridFun(){
+    public function gridAction(){
         $adapter = new adapter();
         $query = "SELECT * FROM `category` WHERE 1";
         $result = $adapter->fetchAll($query);
@@ -20,11 +20,11 @@ class Category{
     }
 
     //add function and insert function
-    public function addFun(){
+    public function addAction(){
         require_once 'view/category/add.phtml';
     }
 
-    public function insertFun(){
+    public function insertAction(){
         $name = $_POST['name'];
         $status = $_POST['status'];
         $description = $_POST['description'];
@@ -40,11 +40,11 @@ class Category{
         $adapter = new adapter();
         $result = $adapter->insertData($query);
 
-        header('location:Category.php?page=grid');
+        header('location:Category.php?a=grid');
     }
 
     //edit and update function
-    public function editFun(){
+    public function editAction(){
         $adapter = new adapter();
         //show input data of particular row
         $link = $_GET['id'];
@@ -55,7 +55,7 @@ class Category{
         require_once 'view/category/edit.phtml';
     }
 
-    public function updateFun(){
+    public function updateAction(){
         $adapter = new adapter();
 
         $link = $_GET['id'];
@@ -72,19 +72,19 @@ class Category{
         $query = "UPDATE `category` SET `name`='$name',`status`='$status',`description`='$description',`updated_at`='$datetime' WHERE `category_id` = $link";
         $result = $adapter->updateFun($query);
         // print_r($result);
-        header('location:Category.php?page=grid');
+        header('location:Category.php?a=grid');
     }
     
 
     //delete category
-    public function deleteFun(){
+    public function deleteAction(){
         $adapter = new adapter();
         $link = $_GET['id'];
 
         $query = "DELETE FROM `category` WHERE `category_id`=$link";
         $result = $adapter->deleteFun($query);
 
-        header('location:Category.php?page=grid');
+        header('location:Category.php?a=grid');
     }
 }
 ?>

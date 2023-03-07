@@ -2,14 +2,14 @@
 require_once 'model/core/adapter.php';
 
 //pages
-$link = $_GET['page'].'Fun';
+$link = $_GET['a'].'Action';
 $Customer = new Customer();
 $Customer->$link(); //pass link to class
 
 class Customer {
     
     //get data from db and show page
-    public function gridFun(){
+    public function gridAction(){
         $adapter = new adapter();
         $query =  "SELECT * FROM `customer` WHERE 1";
         $result = $adapter->fetchAll($query);
@@ -18,11 +18,11 @@ class Customer {
     }
 
     //add data and show page
-    public function addFun(){
+    public function addAction(){
         require_once 'view/customer/add.phtml';
     }
 
-    public function insertFun(){
+    public function insertAction(){
         $firstname = $_POST['first_name'];
         $lastname = $_POST['last_name'];
         $email = $_POST['email'];
@@ -39,11 +39,11 @@ class Customer {
         VALUES ('$firstname','$lastname','$email','$gender','$mobile','$status','$datetime')";
         $result = $adapter->insertData($query);
         print_r($result);
-        header('location:Customer.php?page=grid');
+        header('location:Customer.php?a=grid');
     }
 
     //edit and update
-    public function editFun(){
+    public function editAction(){
 
         $link = $_GET['id'];
         $adapter = new adapter();
@@ -53,7 +53,7 @@ class Customer {
         require_once 'view/customer/edit.phtml';
     }
 
-    public function updateFun(){
+    public function updateAction(){
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $email = $_POST['email'];
@@ -73,10 +73,10 @@ class Customer {
         $adapter = new adapter();
         $result = $adapter->updateFun($query);
 
-        header('location:Customer.php?page=grid');
+        header('location:Customer.php?a=grid');
     }
 
-    public function deleteFun(){
+    public function deleteAction(){
         $link = $_GET['id'];
 
         $adapter = new adapter();
@@ -84,7 +84,7 @@ class Customer {
         $query = "DELETE FROM `customer` WHERE `customer_id` = $link";
         $adapter->deleteFun($query);
 
-        header('location:Customer.php?page=grid');
+        header('location:Customer.php?a=grid');
 
     }
 }

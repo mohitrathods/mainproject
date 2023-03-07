@@ -15,7 +15,7 @@
         </div>
         <div class="headd">
             <span>Customers</span>
-            <a href="Customer.php?page=add">Add Customer</a>
+            <a href="Customer.php?a=add">Add Customer</a>
         </div>
     </div>  
 
@@ -23,6 +23,7 @@
     <div class="table">
         <table border="1px" border-collapse= "collapse">    
             <tr>
+                <th>Customer id</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -35,14 +36,15 @@
 
             <?php foreach($result as $customer): ?>    
                 <tr>
+                    <td><?php echo $customer['customer_id'] ?></td>
                     <td><?php echo $customer['first_name'] ?></td>
                     <td><?php echo $customer['last_name'] ?></td>
                     <td><?php echo $customer['email'] ?></td>
                     <td><?php echo $customer['gender'] ?></td>
                     <td><?php echo $customer['mobile'] ?></td>
                     <td><?php echo $customer['status'] ?></td>
-                    <td><a href="Customer.php?page=edit&id=<?php echo $customer['customer_id'] ?>">EDIT</a></td>
-                    <td><a href="Customer.php?page=delete&id=<?php echo $customer['customer_id'] ?>">DELETE</a></td>
+                    <td><a href="Customer.php?a=edit&id=<?php echo $customer['customer_id'] ?>">EDIT</a></td>
+                    <td><a href="Customer.php?a=delete&id=<?php echo $customer['customer_id'] ?>">DELETE</a></td>
                 </tr>
             <?php endforeach; ?>
         </table>

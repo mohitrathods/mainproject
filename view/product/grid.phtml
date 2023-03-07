@@ -16,7 +16,7 @@
             <!-- head -->
             <div class="headd">
                 <span>Products</span>
-                <a href="Product.php?page=add">Add product</a>
+                <a href="Product.php?a=add">Add product</a>
             </div>
         </div>  
         
@@ -52,9 +52,9 @@
                         <td><?php echo $product['color'] ?></td>
                         <td><?php echo $product['status'] ?></td>
                         <td><?php echo $product['material'] ?></td>
-                        <td><a href="ProductMedia.php?page=grid&id=<?php echo $product['product_id'] ?>">MEDIA</a></td>
-                        <td><a href="Product.php?page=edit&id=<?php echo $product['product_id'] ?>">EDIT</a></td>
-                        <td><a href="Product.php?page=delete&id=<?php echo $product['product_id'] ?>">DELETE</a></a></td>
+                        <td><a href="ProductMedia.php?a=grid&id=<?php echo $product['product_id'] ?>">MEDIA</a></td>
+                        <td><a href="Product.php?a=edit&id=<?php echo $product['product_id'] ?>">EDIT</a></td>
+                        <td><a href="Product.php?a=delete&id=<?php echo $product['product_id'] ?>">DELETE</a></a></td>
                 </tr>
 
                     <?php

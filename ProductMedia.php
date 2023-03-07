@@ -3,14 +3,14 @@
 
 require_once 'model/core/adapter.php';
 
-$link = $_GET['page'].'Fetch'; //page.Fetch > gridFetch
+$link = $_GET['a'].'Action'; //page.Fetch > gridFetch
 $mediaclass = new ProductMedia();
 $mediaclass->$link();
 
 class ProductMedia {
     
     //insert------------
-    public function gridFetch(){
+    public function gridAction(){
 
         $adaptervar = new adapter();
         //fetch data
@@ -26,13 +26,13 @@ class ProductMedia {
 
 
     //ADD---------------
-    public function addFetch(){
+    public function addAction(){
         $link = $_GET['id'];
         //render add.phtml
         require_once 'view/product_media/add.phtml';
     }
 
-    public function insertFetch(){
+    public function insertAction(){
         $adaptervar = new adapter();
 
         $link = $_GET['id'];
@@ -63,11 +63,11 @@ class ProductMedia {
 
         $update = "UPDATE `product_media` SET `image` = '$filename' WHERE `media_id` = $result";
         $adaptervar = $adaptervar->updateFun($update);
-        header("location:ProductMedia.php?page=grid&id={$link}");
+        header("location:ProductMedia.php?a=grid&id={$link}");
 
     }
 
-    public function updateFetch() {
+    public function updateAction() {
         $link = $_GET['id'];
         print_r($link);
 
@@ -98,12 +98,12 @@ class ProductMedia {
         $id = join(',',$gallery);
         $update = "UPDATE `product_media` SET `gallery` = 1 WHERE `media_id` IN ($id)";
         $result = $adapter->updateFun($update);
-        header("location:ProductMedia.php?page=grid&id={$link}");
+        header("location:ProductMedia.php?a=grid&id={$link}");
         
     }
 
     //DELETE
-    public function deleteFetch(){
+    public function deleteAction(){
         $link = $_GET['id'];
 
         //

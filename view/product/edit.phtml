@@ -7,67 +7,67 @@
     <title>Edit Data</title>
 </head> 
 <body>
-    <form action="Product.php?page=update&id=<?php echo $resultrow['product_id'] ?>" method="post">
+    <form action="Product.php?a=update&id=<?php echo $resultrow['product_id'] ?>" method="post">
         <div class="mainadd">
 
             <div class="eachdiv">
                 <label>NAME</label>
-                <input type="text" name="name" value=<?php echo $resultrow['name'] ?> placeholder="name"></input>
+                <input type="text" name="product[name]" value="<?php echo $resultrow['name'] ?>" placeholder="name" />
             </div>
                 
             <div class="eachdiv">
                 <label>SKU</label>
-                <input type="number" name="sku" value=<?php echo $resultrow['sku'] ?> placeholder="enter sku" />
+                <input type="number" name="product[sku]" value="<?php echo $resultrow['sku'] ?>" placeholder="enter sku" />
             </div>
                 
             <div class="eachdiv">
                 <label>COST</label>
-                <input type="number" name="cost" value="<?php echo $resultrow['cost'] ?>" placeholder="enter cost" />
+                <input type="number" name="product[cost]" value="<?php echo $resultrow['cost'] ?>" placeholder="enter cost" />
             </div>
 
             <div class="eachdiv">
                 <label>PRICE</label>
-                <input type="number" name="price" value="<?php echo $resultrow['price'] ?>" placeholder="enter price" />
+                <input type="number" name="product[price]" value="<?php echo $resultrow['price'] ?>" placeholder="enter price" />
             </div>
 
             <div class="eachdiv">
                 <label>QUANTITY</label>
-                <input type="number" name="quantity" value="<?php echo $resultrow['quantity'] ?>" placeholder="enter quantity" />
+                <input type="number" name="product[quantity]" value="<?php echo $resultrow['quantity'] ?>" placeholder="enter quantity" />
             </div>
 
             <div class="eachdiv">
                 <label>DESCRIPTION</label>
-                <input name="description" value="<?php echo $resultrow['description'] ?>" placeholder="enter description" />
+                <input name="product[description]" value="<?php echo $resultrow['description'] ?>" placeholder="enter description" />
             </div>
 
             <div class="eachdiv">
                 <label>COLOR</label>
-                <select name="color">
-                    <option value="red" <?php if ($resultrow['color'] == 'red') {echo "selected";} ?>>Red</option>
-                    <option value="blue" <?php if ($resultrow['color'] == 'blue') {echo "selected";} ?>>Blue</option>
+                <select name="product[color]">
+                    <option value="red <?php if ($resultrow['color'] == 'red') {echo "selected";} ?>">Red</option>
+                    <option value="blue <?php if ($resultrow['color'] == 'blue') {echo "selected";} ?>">Blue</option>
                 </select>
             </div>
             
             <div class="eachdiv">
                 <label>STATUS</label>
-                <select name="status">
-                    <option value="active" <?php if ($resultrow['status'] == 'active') {echo "selected";} ?>>active</option>
-                    <option value="inactive" <?php if ($resultrow['status'] == 'inactive') {echo "selected";} ?>>inactive</option>
+                <select name="product[status]">
+                    <option value="active <?php if ($resultrow['status'] == 'active') {echo "selected";} ?>">active</option>
+                    <option value="inactive <?php if ($resultrow['status'] == 'inactive') {echo "selected";} ?>">inactive</option>
                 </select>
             </div>
 
             <div class="eachdiv">
                 <label>MATERIAL</label>
-                <select name="material">
-                    <option value="glass" <?php if ($resultrow['material'] == 'glass') {echo "selected";} ?>>Glass</option>
-                    <option value="metal" <?php if ($resultrow['material'] == 'metal') {echo "selected";} ?>>Metal</option>
-                    <option value="plastic" <?php if ($resultrow['material'] == 'plastic') {echo "selected";} ?>>Plastic</option>
+                <select name="product[material]">
+                    <option value="glass <?php if ($resultrow['material'] == 'glass') {echo "selected";} ?>">Glass</option>
+                    <option value="metal <?php if ($resultrow['material'] == 'metal') {echo "selected";} ?>">Metal</option>
+                    <option value="plastic <?php if ($resultrow['material'] == 'plastic') {echo "selected";} ?>">Plastic</option>
                 </select>
             </div>
 
             <div class="eachdiv">
                 <input type="submit" class="submitbutton" />
-                <a href="http://localhost/phpproject/product.php?page=grid">CANCEL</a>
+                <a href="http://localhost/phpproject/product.php?a=grid">CANCEL</a>
             </div>
         </div>
     </form>

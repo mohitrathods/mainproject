@@ -1,8 +1,9 @@
-- use if condition in edit 
+> UNDERSTAND PRODUCT MEDIA and adapter 
+> Salesman ma address baki and payment, shipping full tasks baki
+> 5 FUNCTIONS OF PHP DAILY 
+> learn session 
 
-- understand product media and adapter 
-
-> 6 feb training
+> 6 march training
 - controller and action na name hase e changes 
 - Request.php page made
 - proceed code in photos line by line

@@ -15,13 +15,14 @@
         </div>
         <div class="headd">
             <span>Vendors</span>
-            <a href="Vendor.php?page=add">Add Vendor</a>
+            <a href="Vendor.php?a=add">Add Vendor</a>
         </div>
 
         <!-- tqble data content -->
         <div class="table">
             <table border="1px" border-collapse= "collapse">
                 <tr>
+                    <th>Vendor id</th>
                     <th>First Name</th>
                     <th>Last NAme</th>
                     <th>Email</th>
@@ -35,6 +36,7 @@
 
                 <?php foreach($result as $eachitem): ?>
                     <tr>
+                        <td><?php echo $eachitem['vendor_id'] ?></td>
                         <td><?php echo $eachitem['first_name'] ?></td>
                         <td><?php echo $eachitem['last_name'] ?></td>
                         <td><?php echo $eachitem['email'] ?></td>
@@ -42,8 +44,8 @@
                         <td><?php echo $eachitem['mobile'] ?></td>
                         <td><?php echo $eachitem['status'] ?></td>
                         <td><?php echo $eachitem['company'] ?></td>
-                        <td><a href="Vendor.php?page=edit&id=<?php echo $eachitem['vendor_id'] ?>">EDIT</a></td>
-                        <td><a href="Vendor.php?page=delete&id=<?php echo $eachitem['vendor_id'] ?>">DELETE</a></td>
+                        <td><a href="Vendor.php?a=edit&id=<?php echo $eachitem['vendor_id'] ?>">EDIT</a></td>
+                        <td><a href="Vendor.php?a=delete&id=<?php echo $eachitem['vendor_id'] ?>">DELETE</a></td>
                 </tr>
                 <?php endforeach; ?>
             </table>
