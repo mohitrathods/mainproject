@@ -17,7 +17,7 @@
             <!-- head -->
             <div class="headd">
                 <span>Category</span>
-                <a href="Category.php?a=add">Add Category</a>
+                <a href="index.php?c=category&a=add">Add Category</a>
             </div>
         </div>  
         
@@ -32,14 +32,14 @@
                     <th>EDIT</th>
                     <th>DELETE</th>
                 </tr>
-                <?php foreach($result as $category): ?>
+                <?php foreach($categories as $category): ?>
                     <tr>
                         <td><?php echo $category['category_id'] ?></td>
                         <td><?php echo $category['name'] ?></td>
                         <td><?php echo $category['status'] ?></td>
                         <td><?php echo $category['description'] ?></td>
-                        <td><a href="Category.php?a=edit&id=<?php echo $category['category_id'] ?>">EDIT</a></td>
-                        <td><a href="Category.php?a=delete&id=<?php echo $category['category_id'] ?>">DELETE</a></td>
+                        <td><a href="index.php?c=category&a=edit&id=<?php echo $category['category_id'] ?>">EDIT</a></td>
+                        <td><a href="index.php?c=category&a=delete&id=<?php echo $category['category_id'] ?>">DELETE</a></td>
                     </tr>
                 <?php endforeach; ?>
             </table>

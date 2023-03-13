@@ -1,13 +1,12 @@
 <?php
 class Model_Core_Request {
+    
     public function getPost($key = null, $value = null){
         if($key == null){
-            // echo "null";
             return $_POST;
         }
         if(array_key_exists($key,$_POST)){
-            // echo "data";
-            return $_POST[$key];
+            return $_POST[$key]; // key='product'
         }
     return $value;
     }
@@ -29,9 +28,15 @@ class Model_Core_Request {
     public function getControllerName(){
         return $this->getParam('c', 'index');
     }
+
+    public function getRequest($key = null, $value = null){
+        if($key == null){
+            return $_POST;
+        }
+        if(array_key_exists($key, $_POST)){
+            return $_POST[$key];
+        }
+    }
 }
-// http://localhost/phpproject/index.php?c=product
-// $access = new Model_Core_Request();
-// $access->getPost();
-//if error in url, show index if not show controller or action etc
+
 ?>

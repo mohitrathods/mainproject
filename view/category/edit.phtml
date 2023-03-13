@@ -8,29 +8,29 @@
     <title>Edit category</title>
 </head>
 <body>
-<form action="Category.php?a=update&id=<?php echo $result['category_id'] ?>" method="post">
+<form action="index.php?c=category&a=update&id=<?php echo $categories['category_id'] ?>" method="post">
     <div class="mainadd">
         <div class="eachdiv">
             <label>EDIT NAME</label>
-            <input type="text" name="name" value="<?php echo $result['name'] ?>" />
+            <input type="text" name="category[name]" value="<?php echo $categories['name'] ?>" />
         </div>
 
         <div class="eachdiv">
             <label>EDIT OPTION</label>
-            <select name="status">
-                <option value="active" <?php if($result['status'] == 'active' ){echo "selected";} ?>>Active</option>
-                <option value="inactive" <?php if($result['status'] == 'inactive'){echo "selected";} ?>>Inactive</option>
+            <select name="category[status]">
+                <option value="active" <?php if($categories['status'] == 'active' ){echo "selected";} ?>>Active</option>
+                <option value="inactive" <?php if($categories['status'] == 'inactive'){echo "selected";} ?>>Inactive</option>
             </select>
         </div>
 
         <div class="eachdiv">
             <label>EDIT DESCRIPTION</label>
-            <input type="text" name="description" value="<?php echo $result['description'] ?>" />
+            <input type="text" name="category[description]" value="<?php echo $categories['description'] ?>" />
         </div>
 
         <div class="eachdiv">
             <input type="submit" class="submitbutton" />
-            <a href="Category.php?a=grid">CANCEL</a>
+            <a href="index.php?c=category&a=grid">CANCEL</a>
         </div>
     </div>
 </form>

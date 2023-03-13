@@ -15,7 +15,7 @@
         </div>
         <div class="headd">
             <span>Customers</span>
-            <a href="Customer.php?a=add">Add Customer</a>
+            <a href="index.php?c=customer&a=add">Add Customer</a>
         </div>
     </div>  
 
@@ -34,7 +34,7 @@
                 <th>DELETE</th>
             </tr>
 
-            <?php foreach($result as $customer): ?>    
+            <?php foreach($customers as $customer): ?>    
                 <tr>
                     <td><?php echo $customer['customer_id'] ?></td>
                     <td><?php echo $customer['first_name'] ?></td>
@@ -43,8 +43,8 @@
                     <td><?php echo $customer['gender'] ?></td>
                     <td><?php echo $customer['mobile'] ?></td>
                     <td><?php echo $customer['status'] ?></td>
-                    <td><a href="Customer.php?a=edit&id=<?php echo $customer['customer_id'] ?>">EDIT</a></td>
-                    <td><a href="Customer.php?a=delete&id=<?php echo $customer['customer_id'] ?>">DELETE</a></td>
+                    <td><a href="index.php?c=customer&a=edit&id=<?php echo $customer['customer_id'] ?>">EDIT</a></td>
+                    <td><a href="index.php?c=customer&a=delete&id=<?php echo $customer['customer_id'] ?>">DELETE</a></td>
                 </tr>
             <?php endforeach; ?>
         </table>

@@ -1,19 +1,13 @@
 <?php 
-require_once 'model/core/adapter.php';
-
-//link setup
-$link = $_GET['a'].'Action';
-$Vendor = new Vendor();
-$Vendor->$link();
-
-class Vendor{
+require_once 'Controller/Core/Action.php';
+class Controller_Vendor extends Controller_Core_Action{
 
     // fetch and show the data
     public function gridAction(){
 
         $adapter = new adapter();
         $query = "SELECT * FROM `vendor` WHERE 1";
-        $result =  $adapter->fetchAll($query);
+        $vendors =  $adapter->fetchAll($query);
 
         require_once 'view/vendor/grid.phtml';
     }
@@ -24,13 +18,17 @@ class Vendor{
     }
 
     public function insertAction(){
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
-        $email = $_POST['email'];
-        $gender = $_POST['gender'];
-        $mobile = $_POST['firstname'];
-        $status = $_POST['status'];
-        $company = $_POST['company'];
+
+        $request = new Model_Core_Request();
+        $vendors = $request->getPost('vendor');
+
+        $firstname = $vendors['firstname'];
+        $lastname = $vendors['lastname'];
+        $email = $vendors['email'];
+        $gender = $vendors['gender'];
+        $mobile = $vendors['firstname'];
+        $status = $vendors['status'];
+        $company = $vendors['company'];
 
         date_default_timezone_set('Asia/Kolkata');
         $date = date('m/d/Y h:i:s a', time());
@@ -39,29 +37,37 @@ class Vendor{
         $adapter = new adapter();
         $query = "INSERT INTO `vendor`(`first_name`,`last_name`,`email`,`gender`,`mobile`,`status`,`company`,`created_at`)
         VALUES('$firstname','$lastname','$email','$gender','$mobile','$status','$company','$datetime')";
-        $result = $adapter->insertData($query);
+        $vendors = $adapter->insertData($query);
 
-        header('location:Vendor.php?a=grid');
+        $this->redirect("index.php?c=vendor&a=grid");
     }
 
     //FETCH THE ROW AND EDIT THE DATA
     public function editAction(){
-        $link = $_GET['id'];
+        // $link = $_GET['id'];
+
+        $request = new Model_Core_Request();
+        $link = $request->getParam('id');
+
         $adapter = new adapter;
         $query = "SELECT * FROM `vendor` WHERE `vendor_id` = $link";
-        $result = $adapter->fetchRow($query);
+        $vendors = $adapter->fetchRow($query);
 
         require_once 'view/vendor/edit.phtml';
     }
 
     public function updateAction(){
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
-        $email = $_POST['email'];
-        $gender = $_POST['gender'];
-        $mobile = $_POST['mobile'];
-        $status = $_POST['status'];
-        $company = $_POST['company'];
+
+        $request = new Model_Core_Request();
+        $vendors = $request->getPost('vendor');
+
+        $firstname = $vendors['firstname'];
+        $lastname = $vendors['lastname'];
+        $email = $vendors['email'];
+        $gender = $vendors['gender'];
+        $mobile = $vendors['mobile'];
+        $status = $vendors['status'];
+        $company = $vendors['company'];
 
         date_default_timezone_set('Asia/Kolkata');
         $date = date('m/d/Y h:i:s a', time());
@@ -72,18 +78,22 @@ class Vendor{
         $adapter = new adapter();
         $query = "UPDATE `vendor` SET `first_name`='$firstname',`last_name`='$lastname',`email`='$email',`gender`='$gender',`mobile`='$mobile',`status`='$status',`company`='$company',`updated_at`='$datetime'
         WHERE `vendor_id` = $link";
-        $result = $adapter->updateFun($query);
-        header('location:Vendor.php?a=grid');
+        $vendors = $adapter->updateFun($query);
+        $this->redirect("index.php?c=vendor&a=grid");
     }
 
     //delete data
     public function deleteAction(){
-        $link = $_GET['id'];
+        // $link = $_GET['id'];
+
+        $request = new Model_Core_Request();
+        $link = $request->getParam('id');
+
         $adapter = new adapter();
         $query = "DELETE FROM `vendor` WHERE `vendor_id` = $link";
-        $result = $adapter->deleteFun($query);
+        $vendors = $adapter->deleteFun($query);
 
-        header('location:Vendor.php?a=grid');    
+        $this->redirect("index.php?c=vendor&a=grid");    
     }
 }
 ?>

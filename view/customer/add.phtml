@@ -8,26 +8,26 @@
     <title>Add data</title>
 </head>
 <body>
-<form method="post" action="Customer.php?a=insert">
+<form method="post" action="index.php?c=customer&a=insert">
     <div class="mainadd">
         <div class="eachdiv">
             <label>FIRST NAME</label>
-            <input type="text" name="first_name" value="" /> 
+            <input type="text" name="customer[first_name]" value="" /> 
         </div>
 
         <div class="eachdiv">
             <label>LAST NAME</label>
-            <input type="text" name="last_name" value="" /> 
+            <input type="text" name="customer[last_name]" value="" /> 
         </div>
 
         <div class="eachdiv">
             <label>EMAIL</label>
-            <input type="email" name="email" value="" />
+            <input type="email" name="customer[email]" value="" />
         </div>
 
         <div class="eachdiv">
             <label>GENDER</label>
-            <select name="gender">
+            <select name="customer[gender]">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
@@ -35,12 +35,12 @@
 
         <div class="eachdiv">
             <label>MOBILE NO.</label>
-            <input type="tel" name="mobile" value="" />
+            <input type="tel" name="customer[mobile]" value="" />
         </div>
 
         <div class="eachdiv">
             <label>STATUS</label>
-            <select name="status">
+            <select name="customer[status]">
                 <option value="active">Active</option>
                 <option value="inactive">inactive</option>
             </select>
@@ -48,7 +48,7 @@
 
         <div class="eachdiv">
             <input type="submit" class="submitbutton" />
-            <a href="Customer.php?a=grid">CANCEL</a>
+            <a href="index.php?c=customer&a=grid">CANCEL</a>
         </div>
     </div>
 </form>

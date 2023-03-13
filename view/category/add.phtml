@@ -8,16 +8,16 @@
     <title>ADD data</title>
 </head>
 <body>
-<form action="Category.php?a=insert" method="post">
+<form action="index.php?c=category&a=insert" method="post">
     <div class="mainadd">
         <div class="eachdiv">
             <label>NAME</label>
-            <input type="text" name="name" value="" placeholder="Enter category name" />
+            <input type="text" name="category[name]" value="" placeholder="Enter category name" />
         </div>
 
         <div class="eachdiv">
             <label>STATUS</label>
-            <select name="status">
+            <select name="category[status]">
                 <option value="active">Active</option>
                 <option value="inactive">Inactive</option>
             </select>
@@ -25,12 +25,12 @@
 
         <div class="eachdiv">
             <label>DESCRIPTION</label>
-            <input type="text" name="description" value="" placeholder="Enter description" />
+            <input type="text" name="category[description]" value="" placeholder="Enter description" />
         </div>
 
         <div class="eachdiv">
             <input type="submit" class="submitbutton" />
-            <a href="category.php?a=grid">CANCEL</a>
+            <a href="index.php?c=category&a=grid">CANCEL</a>
         </div>
     </div>
 </form>

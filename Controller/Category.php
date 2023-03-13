@@ -1,20 +1,10 @@
 <?php
-//get  access to adapter class
-require_once 'model/core/adapter.php';
-
-//make link accessible
-$link = $_GET['a'].'Action';
-//pass the link in class below
-$Category = new Category();
-$Category->$link();
-
-class Category{
-    
-    //show grid page and fetch data
+require_once 'Controller/Core/Action.php';
+class Controller_Category extends Controller_Core_Action{
     public function gridAction(){
         $adapter = new adapter();
         $query = "SELECT * FROM `category` WHERE 1";
-        $result = $adapter->fetchAll($query);
+        $categories = $adapter->fetchAll($query);
 
         require_once 'view/category/grid.phtml';
     }
@@ -25,10 +15,14 @@ class Category{
     }
 
     public function insertAction(){
-        $name = $_POST['name'];
-        $status = $_POST['status'];
-        $description = $_POST['description'];
 
+        $request =  new Model_Core_Request();
+        $categories =  $request->getPost('category');
+
+        $name = $categories['name'];
+        $status = $categories['status'];
+        $description = $categories['description'];
+        
         date_default_timezone_set('Asia/Kolkata');
         $date = date('m/d/Y h:i:s a', time());
         $datetime = date("y-m-d h:i:sA");
@@ -38,19 +32,22 @@ class Category{
         VALUES ('$name','$status','$description','$datetime')";
 
         $adapter = new adapter();
-        $result = $adapter->insertData($query);
+        $categories = $adapter->insertData($query);
 
-        header('location:Category.php?a=grid');
+        $this->redirect("index.php?c=category&a=grid");
     }
 
     //edit and update function
     public function editAction(){
         $adapter = new adapter();
-        //show input data of particular row
-        $link = $_GET['id'];
+        // $link = $_GET['id'];
+
+        $request = new Model_Core_Request();
+        $link = $request->getParam('id');
         // print_r($link);
+        
         $query = "SELECT * FROM `category` WHERE `category_id` = $link";
-        $result = $adapter->fetchRow($query);
+        $categories = $adapter->fetchRow($query);
 
         require_once 'view/category/edit.phtml';
     }
@@ -58,11 +55,16 @@ class Category{
     public function updateAction(){
         $adapter = new adapter();
 
-        $link = $_GET['id'];
+        // $link = $_GET['id'];
+        $request = new Model_Core_Request();
+        $link = $request->getParam('id');
+        print_r($link);
 
-        $name = $_POST['name'];
-        $status = $_POST['status'];
-        $description = $_POST['description'];
+        $categories = $request->getPost('category');
+
+        $name = $categories['name'];
+        $status = $categories['status'];
+        $description = $categories['description'];
 
         date_default_timezone_set('Asia/Kolkata');
         $date = date('m/d/Y h:i:s a', time());
@@ -70,21 +72,26 @@ class Category{
         // echo $datetime;
 
         $query = "UPDATE `category` SET `name`='$name',`status`='$status',`description`='$description',`updated_at`='$datetime' WHERE `category_id` = $link";
-        $result = $adapter->updateFun($query);
-        // print_r($result);
-        header('location:Category.php?a=grid');
+        $categories = $adapter->updateFun($query);
+        // print_r($categories);
+        $this->redirect("index.php?c=category&a=grid");
     }
     
 
     //delete category
     public function deleteAction(){
         $adapter = new adapter();
-        $link = $_GET['id'];
+        // $link = $_GET['id'];
+        $request = new Model_Core_Request();
+        $link = $request->getParam('id');
+        print_r($link);
+
 
         $query = "DELETE FROM `category` WHERE `category_id`=$link";
-        $result = $adapter->deleteFun($query);
+        $categories = $adapter->deleteFun($query);
 
-        header('location:Category.php?a=grid');
+        $this->redirect("index.php?c=category&a=grid");
     }
 }
+
 ?>

@@ -8,47 +8,47 @@
     <title>Edit data</title>
 </head>
 <body>
-<form action="Customer.php?a=update&id=<?php echo $result['customer_id'] ?>" method="post">
+<form action="index.php?c=customer&a=update&id=<?php echo $customers['customer_id'] ?>" method="post">
     <div class="mainadd">
         <div class="eachdiv">
             <label>FIRST NAME</label>
-            <input type="text" name="firstname" value="<?php echo $result['first_name'] ?>" />
+            <input type="text" name="customer[firstname]" value="<?php echo $customers['first_name'] ?>" />
         </div>
 
         <div class="eachdiv">
             <label>LAST NAME</label>
-            <input type="text" name="lastname" value="<?php echo $result['last_name'] ?>" />
+            <input type="text" name="customer[lastname]" value="<?php echo $customers['last_name'] ?>" />
         </div>
 
         <div class="eachdiv">
             <label>EMAIL</label>
-            <input type="email" name="email" value="<?php echo $result['email'] ?>" />
+            <input type="email" name="customer[email]" value="<?php echo $customers['email'] ?>" />
         </div>
 
         <div class="eachdiv">
             <label>GENDER</label>
-            <select name="gender">
-                <option value="active <?php if($result['gender'] == 'male'){echo 'selected';} ?>">male</option>
-                <option value="female <?php if($result['gender'] == 'female'){echo 'selected';} ?>">female</option>
+            <select name="customer[gender]">
+                <option value="active <?php if($customers['gender'] == 'male'){echo 'selected';} ?>">male</option>
+                <option value="female <?php if($customers['gender'] == 'female'){echo 'selected';} ?>">female</option>
             </select>
         </div>
 
         <div class="eachdiv">
             <label>MOBILE</label>
-            <input type="tel" name="mobile" value="<?php echo $result['mobile'] ?>" />
+            <input type="tel" name="customer[mobile]" value="<?php echo $customers['mobile'] ?>" />
         </div>
 
         <div class="eachdiv">
             <label>STATUS</label>
-            <select name="status">
-                <option value="active <?php if($result['status'] == 'active'){echo 'selected';} ?>">Active</option>
-                <option value="inactive <?php if($result['status'] == 'inactive'){echo 'selected';} ?>">Inctive</option>
+            <select name="customer[status]">
+                <option value="active <?php if($customers['status'] == 'active'){echo 'selected';} ?>">Active</option>
+                <option value="inactive <?php if($customers['status'] == 'inactive'){echo 'selected';} ?>">Inctive</option>
             </select>
         </div>
 
         <div class="eachdiv">
             <input type="submit" class="submitbutton" />
-            <a href="Customer.php?a=grid">CANCEL</a>
+            <a href="index.php?c=customer&a=grid">CANCEL</a>
         </div>
         
     </div>

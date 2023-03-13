@@ -1,18 +1,12 @@
 <?php 
-require_once 'model/core/adapter.php';
-
-//pages
-$link = $_GET['a'].'Action';
-$Customer = new Customer();
-$Customer->$link(); //pass link to class
-
-class Customer {
+require_once 'Controller/Core/Action.php';
+class Controller_Customer extends Controller_Core_Action {
     
     //get data from db and show page
     public function gridAction(){
         $adapter = new adapter();
         $query =  "SELECT * FROM `customer` WHERE 1";
-        $result = $adapter->fetchAll($query);
+        $customers = $adapter->fetchAll($query);
 
         require_once 'view/customer/grid.phtml';
     }
@@ -23,12 +17,16 @@ class Customer {
     }
 
     public function insertAction(){
-        $firstname = $_POST['first_name'];
-        $lastname = $_POST['last_name'];
-        $email = $_POST['email'];
-        $gender = $_POST['gender'];
-        $mobile = $_POST['mobile'];
-        $status = $_POST['status'];
+
+        $request = new Model_Core_Request();
+        $customers = $request->getPost('customer');
+
+        $firstname = $customers['first_name'];
+        $lastname = $customers['last_name'];
+        $email = $customers['email'];
+        $gender = $customers['gender'];
+        $mobile = $customers['mobile'];
+        $status = $customers['status'];
         
         date_default_timezone_set('Asia/Kolkata');
         $date = date('m/d/Y h:i:s a', time());
@@ -37,54 +35,70 @@ class Customer {
         $adapter = new adapter();
         $query = "INSERT INTO `customer`(`first_name`,`last_name`,`email`,`gender`,`mobile`,`status`,`created_at`)
         VALUES ('$firstname','$lastname','$email','$gender','$mobile','$status','$datetime')";
-        $result = $adapter->insertData($query);
-        print_r($result);
-        header('location:Customer.php?a=grid');
+        $customers = $adapter->insertData($query);
+        print_r($customers);
+        $this->redirect("index.php?c=customer&a=grid");
     }
 
     //edit and update
     public function editAction(){
 
-        $link = $_GET['id'];
+        // $link = $_GET['id'];
+
+        $request = new Model_Core_Request();
+        $link = $request->getParam('id');
+        print_r($link);
+
         $adapter = new adapter();
         $query = "SELECT * FROM `customer` WHERE `customer_id` = $link";
-        $result = $adapter->fetchRow($query);
+        $customers = $adapter->fetchRow($query);
 
         require_once 'view/customer/edit.phtml';
     }
 
     public function updateAction(){
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
-        $email = $_POST['email'];
-        $gender = $_POST['gender'];
-        $mobile = $_POST['mobile'];
-        $status = $_POST['status'];
+
+        $request = new Model_Core_Request();
+        $link = $request->getParam('id');
+        print_r($link);
+
+        $customers = $request->getPost('customer');
+
+        $firstname = $customers['firstname'];
+        $lastname = $customers['lastname'];
+        $email = $customers['email'];
+        $gender = $customers['gender'];
+        $mobile = $customers['mobile'];
+        $status = $customers['status'];
         
         date_default_timezone_set('Asia/Kolkata');
         $date = date('m/d/Y h:i:s a', time());
         $datetime = date("y-m-d h:i:sA");
 
-        $link = $_GET['id'];
+        // $link = $_GET['id'];
 
         $query = "UPDATE `customer` SET `first_name`='$firstname',`last_name`='$lastname',`email`='$email',`gender`='$gender',`mobile`='$mobile',`status`='$status',`updated_at`='$datetime'
         WHERE `customer_id` = $link";
 
         $adapter = new adapter();
-        $result = $adapter->updateFun($query);
+        $customers = $adapter->updateFun($query);
 
-        header('location:Customer.php?a=grid');
+        $this->redirect("index.php?c=customer&a=grid");
     }
 
     public function deleteAction(){
-        $link = $_GET['id'];
+        // $link = $_GET['id'];
+
+        $request = new Model_Core_Request();
+        $link = $request->getParam('id');
+        print_r($link);
 
         $adapter = new adapter();
 
         $query = "DELETE FROM `customer` WHERE `customer_id` = $link";
         $adapter->deleteFun($query);
 
-        header('location:Customer.php?a=grid');
+        $this->redirect("index.php?c=customer&a=grid");
 
     }
 }

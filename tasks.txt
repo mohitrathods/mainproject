@@ -1,24 +1,153 @@
-> UNDERSTAND PRODUCT MEDIA and adapter 
-> Salesman ma address baki and payment, shipping full tasks baki
+
+
 > 5 FUNCTIONS OF PHP DAILY 
-> learn session 
-
-> 6 march training
-- controller and action na name hase e changes 
-- Request.php page made
-- proceed code in photos line by line
-> third phota ma 
-> if email is not key return null > this edit in request.php 
-> arraykeyexist method to see array key avialabltiy > 4TH PHOTO SEE IT niche post chhe tya get kri devanu
-and get param in last function all the changes
-> perform 5th photo and 6th
-
-NEW 
-make index.php > see screenshot from 7 
-- static method ma direct class call thay
-- regular method ma object bani ne class access thay 
-- block scope ni bar this no use krvo object banavi ne j krvu 
+> understand product media 
+> make last 2 applications
+> make footer 
+> validation in all controllers 
+> media ma request method set krvani 
+------------------------
 
 
-product conrtoller inside controller thing 
-grid action 
+> TASKS > MARCH 9
+- make protected Setter and Getter in front and action 
+- start from screen shots
+- in all input validation > required > error exception in all controller(completed in product)
+- casting in id > (int) > see 155 SS 
+- error reporting on > google
+- smake function getTampletepath
+- see screenshots 
+- getter setter
+
+- input validation in all controllers 
+
+
+> table class 
+> Model > Core > table class 
+
+----------- 10 march 
+- class, object, array 
+
++-----------------------------------
+FROM THE start
+- in header give link paths index.html?c=controller&a=action
+- make a grid, edit and add and design it 
+
+- now as i gave paths like controller i have to make controller files for all apps
+
+- after it, i have to define a = action like grid fetch etc and i have to require files
+that to be shown while i try to fetch something
+
+- so, after making controller statically this is how 
+from input i get vaalues as > name="name", value=""
+name > key , value = value 
+$_POST['name'] // if i gave method post in form action 
+
+- instead of that, pass arrayname in each key of input tag 
+- so it will give data as (product (key => value, name => 'mohit', email => 'rms@gmail.com'))
+
+- now to post this data on db, i check key and value errors in this array 
+like if array key or value is null, however show the data 
+- for that i have to make Request file and make functions  
+getPost() function for $_POST method (if i write in insertAction print_r($_POST['product']) 
+it will not show any errors means in Requ)est class, function is only made for validation 
+
+> so Request file is only for validation of $_GET and $_POST methods
+
+> now for $_GET > statically i was getting link > $link = $_GET['id']
+> now if i want to validate links also 
+> make functino in Request class > getParam 
+- now inside this, $_GET method is called so, i have to go through it for validation 
+
+> how validation is performed? 
+> instead  of getting id directly, i call and access the Request class and 
+validate link and pass it  into product controller 
+
+------------- FROM HERE, THIGNS CHANGES 
+> now in request class, i make 2 funcitons > getActionName and getControllerName
+
+- why ? to define which action and controller is being used 
+
+> action to perform thase but which action to be performed? 
+> in static method kevi rite krta ta?
+
+> front ma Request model ne access kryo chhe atle aapde front ma action ne e 
+badhuy perform kryu chhe 
+
+> product mathi > request ma check karavyu
+> but have request mathi > Front ma gaya 
+atle product ni actions Front ma perform thai sake 
+> front ma comment kareli chhe 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------- FRONT.PHP 
+<?php 
+require_once 'Controller/Core/Action.php';
+
+class Controller_Core_Front extends Controller_Core_Action {
+    
+    public function init(){
+
+        //get access to request
+        //get name of controller and action names from request 
+
+        //get controller name from request
+        $request = new Model_Core_Request();
+        $controllerName = $request->getControllerName();
+        // print_r($controllerName); // c = product
+        // echo "<br>";
+
+        //get action name from request
+        $actionName = $request->getActionName();
+        // print_r($actionName); // a = grid
+        // echo "<br>";
+
+
+        //now access the action name from request class > a = grid and concate it with Action
+        $actionPath = $request->getActionName().'Action';
+        // print_r($actionPath);
+        // echo "<br>";
+
+        //make dynamic require_once means path name
+        $controllerPathName = 'Controller/'.ucfirst($controllerName).'.php';
+        require_once $controllerPathName;
+        // print_r($controllerPathName);
+
+        //make dynamic controller class name
+        $controllerClassName = 'Controller_'.ucfirst($controllerName);
+        $resultClassName = new $controllerClassName();
+        // print_r($resultClassName); // Controller_Product Object is accessed
+        $resultClassName->$actionPath(); //dynamic action path action to be fetched
+        die();
+        //-----------------
+    
+        // $controllerClassName = 'Controller_'.ucwords($controllerName,'_');
+        // print_r($controllerClassName);
+        // echo "<br>";
+
+        // $controllerPathName = 'Controller/'.ucwords($controllerName).'.php';
+        // $controllerPathName = str_replace('_','/',$controllerClassName);
+        // print_r($controllerPathName);  
+    }
+}
+?>

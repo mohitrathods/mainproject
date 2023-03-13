@@ -8,26 +8,26 @@
     <title>Add data</title>
 </head>
 <body>
-<form method="post" action="Vendor.php?a=insert">
+<form method="post" action="index.php?c=vendor&a=insert">
     <div class="mainadd">
         <div class="eachdiv">
                 <label>FIRST NAME</label>
-                <input type="text" name="firstname" value="" /> 
+                <input type="text" name="vendor[firstname]" value="" /> 
             </div>
 
             <div class="eachdiv">
                 <label>LAST NAME</label>
-                <input type="text" name="lastname" value="" /> 
+                <input type="text" name="vendor[lastname]" value="" /> 
             </div>
 
             <div class="eachdiv">
                 <label>EMAIL</label>
-                <input type="email" name="email" value="" />
+                <input type="email" name="vendor[email]" value="" />
             </div>
 
             <div class="eachdiv">
                 <label>GENDER</label>
-                <select name="gender">
+                <select name="vendor[gender]">
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
@@ -35,12 +35,12 @@
 
             <div class="eachdiv">
                 <label>MOBILE NO.</label>
-                <input type="tel" name="mobile" value="" />
+                <input type="tel" name="vendor[mobile]" value="" />
             </div>
 
             <div class="eachdiv">
                 <label>STATUS</label>
-                <select name="status">
+                <select name="vendor[status]">
                     <option value="active">Active</option>
                     <option value="inactive">inactive</option>
                 </select>
@@ -48,12 +48,12 @@
 
             <div class="eachdiv">
                 <label>COMPANY</label>
-                <input type="text" name="company" value="" />
+                <input type="text" name="vendor[company]" value="" />
             </div>
 
             <div class="eachdiv">
                 <input type="submit" class="submitbutton" />
-                <a href="Vendor.php?a=grid">CANCEL</a>
+                <a href="index.php?c=vendor&a=grid">CANCEL</a>
             </div>
         </div>
     </div>
