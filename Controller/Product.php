@@ -1,5 +1,6 @@
 <?php
 require_once 'Controller/Core/Action.php';
+require_once 'Model/Product.php';
 class Controller_Product extends Controller_Core_Action{ 
 
     protected $product = [];
@@ -40,18 +41,10 @@ class Controller_Product extends Controller_Core_Action{
     }
 
     public function gridAction(){
-
-        //make this dynamic
-        // $query = "SELECT * FROM `product` WHERE 1";
-
-        
-        //make this adapter dynamic
-        // $adapter = new adapter();
         $this->getModel()->setTableName("product");
-        $products = $this->getModel()->fetchAll();
-        
-        $this->setProduct($products);
-        // require_once 'view/product/grid.phtml';
+        $product = $this->getModel()->fetchAll();
+        $this->setProduct($product);
+
         $this->getTemplate("product/grid.phtml");
     }
 

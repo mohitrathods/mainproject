@@ -4,8 +4,8 @@ require_once 'Core/Table.php';
 
 class Model_Product extends Model_Core_Table{
 
-    protected $tableName = 'product'; //table name
-    protected $primaryKey = 'product_id'; //product_id
+    public $tableName = null; //tllable name
+    public $primaryKey = null; //product_id
 
     //TOTAL 5 METHODS HERE
     //fetch Row  > return result > pass query

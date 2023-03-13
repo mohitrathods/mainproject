@@ -12,7 +12,7 @@ class Model_Core_Table{
     }
 
     public function getTableName(){
-        return $this->getTableName();
+        return $this->tableName;
     }
 
     public function setPrimaryKey($primaryKey){
@@ -21,7 +21,7 @@ class Model_Core_Table{
     }
 
     public function getPrimaryKey(){
-        return $this->getPrimaryKey();
+        return $this->tableName;
     }
 
     public function setAdapter($adapter){
@@ -34,12 +34,15 @@ class Model_Core_Table{
             return $this->adapter;
         }
         $adapter = new adapter();
-        $this->getAdapter($adapter);
+        $this->adapter = $adapter;
         return $adapter;
     }
 
     public function fetchAll(){
+        $tableName = $this->getTableName();
 
+        $query = "SELECT * FROM `$tableName` WHERE 1";
+        return $this->getAdapter()->fetchAll($query);
     }
 }
 
